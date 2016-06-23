@@ -1,12 +1,18 @@
 package com.centanet.turman.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
+
+import com.centanet.turman.BaseApplication;
+import com.centanet.turman.R;
+import com.centanet.turman.ui.widget.DialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +21,9 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 
 /**
- * Created by diaoqf on 2016/6/22.
+ * Created by diaoqf on 2016/6/23.
  */
-@SuppressWarnings("ALL")
 public abstract class BaseActivity extends AppCompatActivity {
-
     @SuppressLint("HandlerLeak")
     protected Handler mHandler = new Handler(){
         @Override
@@ -35,6 +39,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void initView(View view){}
     protected void initToolbar(){}
     protected void beforeCreate() {}
+    protected abstract boolean backExitApp();
+
+    protected BaseApplication mApplication;
+    protected Dialog mLoadingDialog;
+
+    private long mLastPress = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,13 +53,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         View view = getLayoutInflater().inflate(getLayout(),null);
         setContentView(view);
 
+        mApplication = (BaseApplication) getApplication();
+        mLoadingDialog = DialogHelper.getLoadingDialog(this);
+
         ButterKnife.bind(this);
         if (hasToolbar()){
             initToolbar();
         }
         initView(view);
+        mApplication.putActivity(this);
     }
 
+    protected void sendRequest(Subscription subscription){
+        mSubscriptions.add(subscription);
+    }
 
     @Override
     protected void onDestroy() {
@@ -64,6 +81,30 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             }
         }
+        mApplication.removeActivity(this);
+    }
+
+    protected void showAlert(int msg){
+        Toast.makeText(BaseActivity.this,getResources().getString(msg),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backExitApp()){
+            if (mLastPress < 0) {
+                showAlert(R.string.exit_message);
+                mLastPress = System.currentTimeMillis();
+            } else {
+                long this_press_time = System.currentTimeMillis();
+                if (this_press_time - mLastPress <= 3000) {
+                    mApplication.exitApplication();
+                } else {
+                    showAlert(R.string.exit_message);
+                    mLastPress = this_press_time;
+                }
+            }
+        } else {
+            super.onBackPressed();
+        }
     }
 }
-

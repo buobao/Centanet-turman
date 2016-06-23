@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Centanet</string>
+    <string name="app_version">1.0.0</string>
+    <string name="exit_message">再按一下退出程序!</string>
 
     <!--login activity-->
     <string name="user_name_hint">请输入登录名</string>
     <string name="user_password_hint">请输入登录密码</string>
+
+    <string name="login_success">登录成功!</string>
+    <string name="login_fail">登录失败,请检查用户名和密码!</string>
 </resources>
