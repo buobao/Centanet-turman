@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
@@ -36,9 +37,20 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="home page"
-        />
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/home_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--主布局-->
+        <include
+            android:id="@+id/home_content"
+            layout="@layout/home_content" />
+
+        <!--侧滑菜单-->
+        <include
+            android:id="@+id/home_drawer"
+            layout="@layout/home_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
 </LinearLayout>
