@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--remote color-->
     <color name="color_primary_red">#f44336</color>
     <color name="color_primary_red_dark">#d32f2f</color>
     <color name="color_primary_green"> #4caf50</color>
@@ -9,4 +10,38 @@
     <color name="color_accent_pink">#ff4081</color>
     <color name="color_shadow">#44000000</color>
     <color name="launcher_back_color">#ffccff</color>
+
+    <!-- 公用颜色 -->
+    <color name="sortText_color">#e0e0e0</color>   <!--排序选择框颜色 -->
+    <color name="unenabled_color">#55ffffff</color>    <!--标题栏TextView不可用时的颜色-->
+    <color name="slightGray">#c5c5c7</color>
+    <color name="black">#000000</color>
+    <color name="darkgray">#808080</color>
+    <color name="darkgray2">#a8a8a8a8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="lightgray">#F0F0F0</color>
+    <color name="divider_gray">#cccccc</color>
+    <color name="lightblack">#ff202020</color>
+    <color name="red">#FF0000</color>
+    <color name="yuekan_bgcolor">#f1f1f1</color>
+    <color name="home_page_red">#D74A39</color>
+    <color name="home_page_bottom">#6C231A</color>
+    <color name="green">#00ff00</color>
+    <color name="house_tag_color">#aaaaaa</color>
+    <color name="house_tag_text_color">#999999</color>
+    <color name="house_list_text_color">#2E2E2E</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half">#70000000</color>
+    <color name="transparent_half_darker">#90000000</color>
+    <color name="transparent_half_darker_darker">#a0000000</color>
+    <color name="transparent_half_darker_darker_dark">#b0000000</color>
+    <color name="bg_main_near">#4B4848</color>
+    <color name="gray_text_login_top">#6E6A69</color>
+    <color name="gray_text_login_input">#B1B1B1</color>
+    <color name="gray_btn_login">#A02223</color>
+    <color name="gray_slid_menu_item_bg">#415365</color>
+    <color name="red_main_red">#D03535</color>
+    <color name="gray_text_color">#9E9E9E</color>
+    <color name="bg_main">#1E1A1A</color>
 </resources>
