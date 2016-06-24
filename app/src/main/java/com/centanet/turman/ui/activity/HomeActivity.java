@@ -1,5 +1,6 @@
 package com.centanet.turman.ui.activity;
 
+import android.content.Intent;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import com.centanet.turman.R;
 import com.centanet.turman.ui.BaseActivity;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by diaoqf on 2016/6/23.
@@ -103,6 +105,16 @@ public class HomeActivity extends BaseActivity {
             toggleDrawable();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @OnClick({R.id.mi_collection,R.id.mi_diancollection,R.id.mi_grabcustomer,R.id.mi_sale})
+    public void menuClick(View view){
+        switch (view.getId()) {
+            case R.id.mi_sale :
+                Intent intent = new Intent(HomeActivity.this,CommonActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }
