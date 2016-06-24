@@ -1,10 +1,7 @@
 package com.centanet.turman.ui.activity;
 
-import android.os.Bundle;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -27,6 +24,7 @@ public class HomeActivity extends BaseActivity {
     protected View mContent;
     @Bind(R.id.home_drawer)
     protected View mDrawer;
+
 
     private boolean isMenuOpen = false;
 

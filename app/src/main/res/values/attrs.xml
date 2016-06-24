@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--menu item-->
+    <declare-styleable name="MenuItem">
+        <attr name="lft_img_width" format="integer"/>
+        <attr name="lft_img_height" format="integer"/>
+    </declare-styleable>
+
+</resources>

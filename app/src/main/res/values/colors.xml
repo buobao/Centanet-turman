@@ -2,7 +2,7 @@
 <resources>
     <!--remote color-->
     <color name="color_primary_red">#f44336</color>
-    <color name="color_primary_red_dark">#d32f2f</color>
+    <color name="color_primary_red_dark">#D74A39</color>
     <color name="color_primary_green"> #4caf50</color>
     <color name="color_primary_green_dark">#388e3c</color>
     <color name="color_primary_blue">#2196f3</color>
@@ -25,8 +25,6 @@
     <color name="lightblack">#ff202020</color>
     <color name="red">#FF0000</color>
     <color name="yuekan_bgcolor">#f1f1f1</color>
-    <color name="home_page_red">#D74A39</color>
-    <color name="home_page_bottom">#6C231A</color>
     <color name="green">#00ff00</color>
     <color name="house_tag_color">#aaaaaa</color>
     <color name="house_tag_text_color">#999999</color>

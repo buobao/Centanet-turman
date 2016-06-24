@@ -9,4 +9,21 @@
 
     <string name="login_success">登录成功!</string>
     <string name="login_fail">登录失败,请检查用户名和密码!</string>
+
+    <!--home activity-->
+    <string name="mi_sale">附近出售</string>
+    <string name="mi_rent">附近出租</string>
+    <string name="mi_see">约看房源</string>
+    <string name="mi_myhouse">我的房源</string>
+    <string name="mi_keymanage">钥匙管理</string>
+    <string name="mi_collection">我的收藏</string>
+    <string name="mi_diancollection">店组收藏</string>
+    <string name="mi_mycustomer">我的客源</string>
+    <string name="mi_potentialcustomer">我的潜客</string>
+    <string name="mi_myimport">我的导入客</string>
+    <string name="mi_grabhouse">抢公房</string>
+    <string name="mi_grabcustomer">抢公客</string>
+    <string name="mi_password">输PIN码</string>
+    <string name="mi_scan">扫一扫</string>
+
 </resources>
