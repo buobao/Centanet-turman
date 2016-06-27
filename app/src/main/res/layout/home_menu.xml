@@ -23,8 +23,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_sale"
                 android:drawableLeft="@mipmap/homeside_sell_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item" />
             <com.centanet.turman.ui.widget.MenuItem
                 android:id="@+id/mi_rent"
@@ -32,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_rent"
                 android:drawableLeft="@mipmap/homeside_rent_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_see"
                 android:drawableLeft="@mipmap/homeside_see_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_myhouse"
                 android:drawableLeft="@mipmap/homeside_myhouse_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -62,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_keymanage"
                 android:drawableLeft="@mipmap/homeside_rent_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -72,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_collection"
                 android:drawableLeft="@mipmap/homeside_rent_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -82,8 +82,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_diancollection"
                 android:drawableLeft="@mipmap/homeside_grabhouse_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -92,8 +92,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_mycustomer"
                 android:drawableLeft="@mipmap/homeside_mycustomer_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -102,8 +102,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_potentialcustomer"
                 android:drawableLeft="@mipmap/homeside_mycustomer_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -112,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_myimport"
                 android:drawableLeft="@mipmap/homeside_mycustomer_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -122,8 +122,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_grabhouse"
                 android:drawableLeft="@mipmap/homeside_grabhouse_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
                 style="@style/menu_item"
                 />
             <com.centanet.turman.ui.widget.MenuItem
@@ -132,10 +132,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mi_grabcustomer"
                 android:drawableLeft="@mipmap/homeside_mycustomer_icon"
-                menuitem:lft_img_width="32"
-                menuitem:lft_img_height="32"
-                style="@style/menu_item"
-                />
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
+                style="@style/menu_item"/>
 
 
         </LinearLayout>

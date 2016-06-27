@@ -25,4 +25,16 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
+    <include layout="@layout/search_base_bar"/>
+
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+

@@ -26,4 +26,9 @@
     <string name="mi_password">输PIN码</string>
     <string name="mi_scan">扫一扫</string>
 
+    <!--search bar-->
+    <string name="search_btn">搜索</string>
+    <string name="search_hint">请输入搜索内容</string>
+    <string name="search_advance">高级筛选</string>
+
 </resources>

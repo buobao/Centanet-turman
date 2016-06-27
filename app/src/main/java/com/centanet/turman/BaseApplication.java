@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.centanet.turman.ui.util.UiContent;
 import com.centanet.turman.ui.widget.DialogHelper;
+import com.centanet.turman.util.LocationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class BaseApplication extends Application {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedEditor;
     private List<Activity> mLiveActivityList;
+    private LocationUtil mLocationUtil;
 
     @Override
     public void onCreate() {
@@ -26,6 +29,10 @@ public class BaseApplication extends Application {
         mSharedPreferences = getSharedPreferences(UiContent.SHARED_FILE_NAME, Activity.MODE_PRIVATE);
         mSharedEditor = mSharedPreferences.edit();
         mLiveActivityList = new ArrayList<>();
+
+        SDKInitializer.initialize(getApplicationContext());
+        //开启定位
+        mLocationUtil = new LocationUtil(getApplicationContext());
     }
 
     //保存基本数据
@@ -71,7 +78,18 @@ public class BaseApplication extends Application {
 
     //暴力终止
     public void killApplication(){
-
+        System.exit(0);
     }
 
+    public LocationUtil getmLocationUtil() {
+        return mLocationUtil;
+    }
+
+    public double getLatitude(){
+        return mLocationUtil.getLatitude();
+    }
+
+    public double getLongtitude(){
+        return mLocationUtil.getLongtitude();
+    }
 }
