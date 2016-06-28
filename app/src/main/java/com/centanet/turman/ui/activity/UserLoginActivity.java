@@ -68,7 +68,7 @@ public class UserLoginActivity extends BaseFormActivity {
         params.put("version", NetContent.VERSION);
 
         sendRequest(Observable.just(params)
-                .flatMap((stringObjectMap)-> {return NetHelper.getCommonService().login((String)params.get("userName"),(String)params.get("password"),(int)params.get("version"));})
+                .flatMap((stringObjectMap)-> NetHelper.getCommonService().login((String)params.get("userName"),(String)params.get("password"),(int)params.get("version")))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LoginResult>() {
@@ -116,13 +116,11 @@ public class UserLoginActivity extends BaseFormActivity {
     @Override
     protected void initView(View view) {
         if (mApplication.getSpBoolean(UiContent.STORE_ISLOGIN)) {
-            mUserName.setText(mApplication.getSpString(UiContent.STORE_USERNAME));
-            mPassword.setText(mApplication.getSpString(UiContent.STORE_PASSWORD));
+            mUserName.setText(mApplication.username);
+            mPassword.setText(mApplication.password);
             formSubmit();
         }
 
-        mSubmit.setOnClickListener( v -> {
-            mValidator.validate();
-        });
+        mSubmit.setOnClickListener( v -> mValidator.validate());
     }
 }

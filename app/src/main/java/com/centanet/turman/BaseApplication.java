@@ -22,6 +22,18 @@ public class BaseApplication extends Application {
     private List<Activity> mLiveActivityList;
     private LocationUtil mLocationUtil;
 
+    private double last_latitude;
+    private double last_longtitude;
+
+    private boolean isMute;
+
+    //login user information
+    public String empId;
+    public String token;
+    public String username;
+    public String password;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,7 +44,33 @@ public class BaseApplication extends Application {
 
         SDKInitializer.initialize(getApplicationContext());
         //开启定位
-        mLocationUtil = new LocationUtil(getApplicationContext());
+        mLocationUtil = new LocationUtil(this);
+        isMute = getSpBoolean(UiContent.STORE_IS_MUTE);
+
+        last_latitude = getSpDouble(UiContent.STORE_LATITUDE);
+        last_longtitude = getSpDouble(UiContent.STORE_LONGTITUDE);
+
+        saveDouble(UiContent.STORE_LATITUDE, getLatitude());
+        saveDouble(UiContent.STORE_LONGTITUDE, getLongtitude());
+
+        //load login user information
+        empId = getSpString(UiContent.STORE_EMPID);
+        token = getSpString(UiContent.STORE_TOKEN);
+        username = getSpString(UiContent.STORE_USERNAME);
+        password = getSpString(UiContent.STORE_PASSWORD);
+    }
+
+    /**
+     * 设置静音模式
+     * @param mute
+     */
+    public void setMute(boolean mute) {
+        isMute = mute;
+        saveBoolen("isMute",isMute);
+    }
+
+    public boolean isMute(){
+        return isMute;
     }
 
     //保存基本数据
@@ -48,6 +86,11 @@ public class BaseApplication extends Application {
         mSharedEditor.commit();
     }
 
+    public void saveDouble(String name,double value) {
+        mSharedEditor.putFloat(name, (float) value);
+        mSharedEditor.commit();
+    }
+
     public void saveBoolen(String name, boolean value){
         mSharedEditor.putBoolean(name,value);
         mSharedEditor.commit();
@@ -59,6 +102,10 @@ public class BaseApplication extends Application {
 
     public boolean getSpBoolean(String name) {
        return mSharedPreferences.getBoolean(name, false);
+    }
+
+    public double getSpDouble(String name){
+        return mSharedPreferences.getFloat(name,0);
     }
 
     public void putActivity(Activity activity){
@@ -76,12 +123,13 @@ public class BaseApplication extends Application {
         mLiveActivityList.clear();
     }
 
-    //暴力终止
+    //强制终止
     public void killApplication(){
-        System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
-    public LocationUtil getmLocationUtil() {
+    public LocationUtil getLocationUtil() {
         return mLocationUtil;
     }
 
@@ -91,5 +139,13 @@ public class BaseApplication extends Application {
 
     public double getLongtitude(){
         return mLocationUtil.getLongtitude();
+    }
+
+    public double getLastLatitude() {
+        return last_latitude;
+    }
+
+    public double getLastLongtitude() {
+        return last_longtitude;
     }
 }

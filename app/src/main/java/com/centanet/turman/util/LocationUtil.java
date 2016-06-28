@@ -8,6 +8,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
+import com.centanet.turman.BaseApplication;
+import com.centanet.turman.ui.BaseActivity;
 
 import java.util.List;
 
@@ -15,13 +17,13 @@ import java.util.List;
  * Created by diaoqf on 2016/6/27.
  */
 public class LocationUtil {
-    private Context mContext;
+    private BaseApplication mContext;
     public LocationClient mLocationClient = null;
 
     private double latitude = 0;
     private double longtitude = 0;
 
-    public LocationUtil(Context context){
+    public LocationUtil(BaseApplication context){
         mContext = context;
 
         mLocationClient = new LocationClient(mContext);
@@ -29,7 +31,7 @@ public class LocationUtil {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);//可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
         option.setCoorType("bd09ll");//可选，默认gcj02，设置返回的定位结果坐标系
-        int span=1000;
+        int span=10000;
         option.setScanSpan(span);//可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
         option.setIsNeedAddress(true);//可选，设置是否需要地址信息，默认不需要
         option.setOpenGps(true);//可选，默认false,设置是否使用gps

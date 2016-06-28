@@ -12,5 +12,7 @@ public class NetContent {
 
     //login
     public static final String LOGIN_URL="mobile/login";
+    //house list
+    public static final String HOUSE_LIST_URL="mobile/hou/houList";
 
 }

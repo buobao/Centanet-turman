@@ -88,6 +88,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(BaseActivity.this,getResources().getString(msg),Toast.LENGTH_SHORT).show();
     }
 
+    protected void showAlert(String msg){
+        Toast.makeText(BaseActivity.this,msg,Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onBackPressed() {
         if (backExitApp()){
