@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:text="登录"
+            android:text="@string/user_login_btn"
             android:textColor="@color/white"
             android:textSize="15sp" />
 

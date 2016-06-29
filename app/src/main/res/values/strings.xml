@@ -6,6 +6,7 @@
     <!--login activity-->
     <string name="user_name_hint">请输入登录名</string>
     <string name="user_password_hint">请输入登录密码</string>
+    <string name="user_login_btn">登录</string>
 
     <string name="login_success">登录成功!</string>
     <string name="login_fail">登录失败,请检查用户名和密码!</string>

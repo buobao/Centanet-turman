@@ -60,4 +60,7 @@ dependencies {
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
     compile files('libs/BaiduLBS_Android.jar')
     compile project(':PullToRefresh')
+
+//    testing framework
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
 }
