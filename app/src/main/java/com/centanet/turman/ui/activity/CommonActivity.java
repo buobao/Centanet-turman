@@ -154,7 +154,7 @@ public class CommonActivity extends BaseActivity {
                         }
                         mAdapter.notifyDataSetChanged();
                     } else {
-                        Toast.makeText(CommonActivity.this, "没有更多数据!", Toast.LENGTH_SHORT).show();
+                        showAlert("没有更多数据");
                     }
                 } else {
                     showAlert("数据读取失败!");
