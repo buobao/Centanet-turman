@@ -108,12 +108,18 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.mi_collection,R.id.mi_diancollection,R.id.mi_grabcustomer,R.id.mi_sale})
+    @OnClick({R.id.mi_collection,R.id.mi_diancollection,R.id.mi_grabcustomer,
+            R.id.mi_sale,R.id.mi_grabhouse,R.id.mi_keymanage,
+            R.id.mi_mycustomer,R.id.mi_myhouse,R.id.mi_myimport,
+            R.id.mi_potentialcustomer,R.id.mi_logout})
     public void menuClick(View view){
         switch (view.getId()) {
             case R.id.mi_sale :
                 Intent intent = new Intent(HomeActivity.this,CommonActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.mi_logout:
+                mApplication.logout(this);
                 break;
         }
     }

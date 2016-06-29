@@ -135,7 +135,16 @@
                 menuitem:lft_img_width="16"
                 menuitem:lft_img_height="16"
                 style="@style/menu_item"/>
-
+            <com.centanet.turman.ui.widget.MenuItem
+                android:id="@+id/mi_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mi_logout"
+                android:drawableLeft="@mipmap/homeside_grabhouse_icon"
+                menuitem:lft_img_width="16"
+                menuitem:lft_img_height="16"
+                style="@style/menu_item"
+                />
 
         </LinearLayout>
 

@@ -2,9 +2,11 @@ package com.centanet.turman;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.centanet.turman.ui.activity.UserLoginActivity;
 import com.centanet.turman.ui.util.UiContent;
 import com.centanet.turman.ui.widget.DialogHelper;
 import com.centanet.turman.util.LocationUtil;
@@ -127,6 +129,21 @@ public class BaseApplication extends Application {
     public void killApplication(){
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
+    }
+
+    //登出
+    public void logout(Activity activity){
+        saveString(UiContent.STORE_EMPID,"");
+        saveString(UiContent.STORE_PASSWORD,"");
+        saveString(UiContent.STORE_TOKEN,"");
+        saveString(UiContent.STORE_USERNAME,"");
+        saveBoolen(UiContent.STORE_ISLOGIN,false);
+        saveDouble(UiContent.STORE_LATITUDE,getLatitude());
+        saveDouble(UiContent.STORE_LONGTITUDE,getLongtitude());
+        saveBoolen(UiContent.STORE_IS_MUTE,false);
+        Intent intent = new Intent(activity, UserLoginActivity.class);
+        activity.startActivity(intent);
+        exitApplication();
     }
 
     public LocationUtil getLocationUtil() {

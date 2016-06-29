@@ -27,6 +27,7 @@
     <string name="mi_grabcustomer">抢公客</string>
     <string name="mi_password">输PIN码</string>
     <string name="mi_scan">扫一扫</string>
+    <string name="mi_logout">登出</string>
 
     <!--search bar-->
     <string name="search_btn">搜索</string>
