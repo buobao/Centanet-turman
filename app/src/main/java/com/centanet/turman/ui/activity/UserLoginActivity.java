@@ -8,9 +8,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.centanet.turman.R;
+import com.centanet.turman.entity.BaseEntity;
+import com.centanet.turman.entity.BaseResult;
 import com.centanet.turman.entity.LoginResult;
 import com.centanet.turman.net.NetContent;
 import com.centanet.turman.net.NetHelper;
+import com.centanet.turman.net.service.NetRequestFunction;
 import com.centanet.turman.ui.BaseFormActivity;
 import com.centanet.turman.ui.util.UiContent;
 import com.centanet.turman.ui.util.UiUtil;
@@ -62,45 +65,29 @@ public class UserLoginActivity extends BaseFormActivity {
         mSubmit.setEnabled(false);
         mLoadingDialog.show();
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("userName",userName);
-        params.put("password",password);
-        params.put("version", NetContent.VERSION);
+        requestParams.put("userName",userName);
+        requestParams.put("password",password);
+        requestParams.put("version", NetContent.VERSION);
 
-        sendRequest(Observable.just(params)
-                .flatMap((stringObjectMap)-> NetHelper.getCommonService().login((String)params.get("userName"),(String)params.get("password"),(int)params.get("version")))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<LoginResult>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-                        mSubmit.setEnabled(true);
-                        Log.d("Turman",e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(LoginResult loginResult) {
-                        if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
-                            mLoadingDialog.dismiss();
-                        }
-
-                        if (loginResult.isSuccess){
-                            mApplication.saveString(UiContent.STORE_USERNAME,userName);
-                            mApplication.saveString(UiContent.STORE_PASSWORD,password);
-                            mApplication.saveString(UiContent.STORE_TOKEN,loginResult.token);
-                            mApplication.saveString(UiContent.STORE_EMPID,loginResult.empId);
-                            mApplication.saveBoolen(UiContent.STORE_ISLOGIN,true);
-                            showAlert(R.string.login_success);
-                            UiUtil.gotoHome(UserLoginActivity.this);
-                        } else {
-                            mSubmit.setEnabled(true);
-                            showAlert(R.string.login_fail);
-                        }
-                    }
-                }));
+        sendRequest(NetRequestFunction.LOGIN,null,new MyObserver(){
+            @Override
+            public void onNext(BaseResult baseResult) {
+                super.onNext(baseResult);
+                LoginResult result = (LoginResult) baseResult;
+                if (result.isSuccess){
+                    mApplication.saveString(UiContent.STORE_USERNAME,userName);
+                    mApplication.saveString(UiContent.STORE_PASSWORD,password);
+                    mApplication.saveString(UiContent.STORE_TOKEN,result.token);
+                    mApplication.saveString(UiContent.STORE_EMPID,result.empId);
+                    mApplication.saveBoolen(UiContent.STORE_ISLOGIN,true);
+                    showAlert(R.string.login_success);
+                    UiUtil.gotoHome(UserLoginActivity.this);
+                } else {
+                    mSubmit.setEnabled(true);
+                    showAlert(R.string.login_fail);
+                }
+            }
+        });
     }
 
     @Override

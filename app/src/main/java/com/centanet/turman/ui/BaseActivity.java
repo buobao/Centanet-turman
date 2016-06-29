@@ -6,19 +6,35 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.centanet.turman.BaseApplication;
 import com.centanet.turman.R;
+import com.centanet.turman.entity.BaseEntity;
+import com.centanet.turman.entity.BaseResult;
+import com.centanet.turman.entity.LoginResult;
+import com.centanet.turman.net.service.NetRequestFunction;
+import com.centanet.turman.ui.util.UiContent;
+import com.centanet.turman.ui.util.UiUtil;
 import com.centanet.turman.ui.widget.DialogHelper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Observer;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by diaoqf on 2016/6/23.
@@ -43,8 +59,32 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected BaseApplication mApplication;
     protected Dialog mLoadingDialog;
+    protected Map<String,String> requestParams;
+
 
     private long mLastPress = -1;
+
+    public class MyObserver<T extends BaseResult> implements Observer<T> {
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
+                mLoadingDialog.dismiss();
+            }
+            showAlert(R.string.net_work_error);
+        }
+
+        @Override
+        public void onNext(T t) {
+            if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
+                mLoadingDialog.dismiss();
+            }
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +95,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         mApplication = (BaseApplication) getApplication();
         mLoadingDialog = DialogHelper.getLoadingDialog(this);
+        requestParams = new HashMap<>();
 
         ButterKnife.bind(this);
         if (hasToolbar()){
@@ -66,6 +107,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void sendRequest(Subscription subscription){
         mSubscriptions.add(subscription);
+    }
+
+    protected void sendRequest(String functionName,Map<String, String> params,MyObserver observer ){
+        final Method[] method = new Method[1];
+        try {
+            method[0] = NetRequestFunction.class.getMethod(functionName,new Class[]{Map.class});
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        params = params == null ? requestParams : params;
+        sendRequest(Observable.just(params)
+                .flatMap((stringStringMap)-> {
+                    try {
+                        return (Observable<?>) method[0].invoke(null, stringStringMap);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer));
     }
 
     @Override

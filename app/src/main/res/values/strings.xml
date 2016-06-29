@@ -10,6 +10,7 @@
 
     <string name="login_success">登录成功!</string>
     <string name="login_fail">登录失败,请检查用户名和密码!</string>
+    <string name="net_work_error">网络故障或联系系统管理员!</string>
 
     <!--home activity-->
     <string name="mi_sale">附近出售</string>

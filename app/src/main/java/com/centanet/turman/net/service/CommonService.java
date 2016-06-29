@@ -1,7 +1,7 @@
 package com.centanet.turman.net.service;
 
 import com.centanet.turman.entity.HouseEntity;
-import com.centanet.turman.entity.ListResult;
+import com.centanet.turman.entity.HouseListResult;
 import com.centanet.turman.entity.LoginResult;
 import com.centanet.turman.net.NetContent;
 
@@ -19,12 +19,12 @@ public interface CommonService {
     Observable<LoginResult> login(
             @Query("username")String userName,
             @Query("password")String password,
-            @Query("version")int version
+            @Query("version")String version
     );
 
     //house list
     @GET(NetContent.HOUSE_LIST_URL)
-    Observable<ListResult<HouseEntity>> getHouseList(
+    Observable<HouseListResult> getHouseList(
         @Query("empId") String empId,
         @Query("token") String token,
         @Query("lat") String lat,
@@ -41,7 +41,8 @@ public interface CommonService {
         @Query("page") String page,
         @Query("pageSize") String pageSize,
         @Query("sidx") String sidx,
-        @Query("sord") String sord
+        @Query("sord") String sord,
+        @Query("listType") String listType
     );
 
 

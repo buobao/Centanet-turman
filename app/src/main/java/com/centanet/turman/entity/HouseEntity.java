@@ -5,7 +5,7 @@ package com.centanet.turman.entity;
  * Created by diaoqf on 2016/6/28.
  */
 public class HouseEntity extends BaseEntity {
-    public long activeTime;
+    public String activeTime;
     public String addr;
     public String att;
     public String building_name;
