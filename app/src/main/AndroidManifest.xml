@@ -54,6 +54,12 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".ui.activity.CommonListActivity"
+            android:configChanges="orientation|keyboard|screenSize"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"
+            />
+
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote" />
         <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="iLAV73QPUFXlSg0vKz2VuI9fMPypLBEV" />
     </application>

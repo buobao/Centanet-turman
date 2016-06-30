@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.centanet.turman.ui.activity.UserLoginActivity;
@@ -123,6 +124,20 @@ public class BaseApplication extends Application {
             mLiveActivityList.get(i).finish();
         }
         mLiveActivityList.clear();
+    }
+
+    /**
+     * 跳转Activity
+     * @param activity
+     * @param clzz
+     * @param bundle
+     */
+    public void goActivity(Activity activity, Class clzz, Bundle bundle){
+        Intent intent = new Intent(activity,clzz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        activity.startActivity(intent);
     }
 
     //强制终止

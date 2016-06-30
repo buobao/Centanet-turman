@@ -60,12 +60,7 @@ public class HomeActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.mipmap.home_menu);
         setTitle("");
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleDrawable();
-            }
-        });
+        mToolbar.setNavigationOnClickListener((view)->toggleDrawable());
     }
 
     @Override
@@ -108,15 +103,17 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.mi_collection,R.id.mi_diancollection,R.id.mi_grabcustomer,
+    @OnClick({R.id.mi_collection,R.id.mi_rent,R.id.mi_diancollection,R.id.mi_grabcustomer,
             R.id.mi_sale,R.id.mi_grabhouse,R.id.mi_keymanage,
             R.id.mi_mycustomer,R.id.mi_myhouse,R.id.mi_myimport,
             R.id.mi_potentialcustomer,R.id.mi_logout})
     public void menuClick(View view){
         switch (view.getId()) {
             case R.id.mi_sale :
-                Intent intent = new Intent(HomeActivity.this,CommonActivity.class);
-                startActivity(intent);
+                mApplication.goActivity(this, CommonActivity.class, null);
+                break;
+            case R.id.mi_rent:
+                mApplication.goActivity(this,CommonListActivity.class,null);
                 break;
             case R.id.mi_logout:
                 mApplication.logout(this);
