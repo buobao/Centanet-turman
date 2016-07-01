@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,6 +43,8 @@ public class CommonActivity extends BaseActivity {
     protected Toolbar mToolbar;
     @Bind(R.id.pull_refresh_list)
     protected PullToRefreshListView mPullToRefreshListView;
+    @Bind(R.id.ll_loading)
+    protected LinearLayout mLoadingLayout;
 
     @Override
     protected int getLayout() {
@@ -108,6 +111,7 @@ public class CommonActivity extends BaseActivity {
         // Add an end-of-list listener
         mPullToRefreshListView.setOnLastItemVisibleListener(()-> {
             //添加翻页layout
+            mLoadingLayout.setVisibility(View.VISIBLE);
             loadDate();
         });
 
@@ -142,6 +146,11 @@ public class CommonActivity extends BaseActivity {
     private void loadDate(){
         sendRequest(NetRequestFunction.GET_HOUSE_LIST,null,new MyObserver(){
             @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                mPullToRefreshListView.onRefreshComplete();
+            }
+            @Override
             public void onNext(BaseResult baseResult) {
                 super.onNext(baseResult);
                 HouseListResult houseHouseListResult = (HouseListResult) baseResult;
@@ -153,6 +162,9 @@ public class CommonActivity extends BaseActivity {
                             mListItems.add(houseEntity.houAddr);
                         }
                         mAdapter.notifyDataSetChanged();
+                        if (mLoadingLayout.getVisibility() == View.VISIBLE) {
+                            mLoadingLayout.setVisibility(View.GONE);
+                        }
                     } else {
                         showAlert("没有更多数据");
                     }

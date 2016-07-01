@@ -74,6 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
                 mLoadingDialog.dismiss();
             }
+            e.printStackTrace();
             showAlert(R.string.net_work_error);
         }
 

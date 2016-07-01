@@ -20,6 +20,7 @@ public class HouseListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.frg_houselist,container,false);
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
