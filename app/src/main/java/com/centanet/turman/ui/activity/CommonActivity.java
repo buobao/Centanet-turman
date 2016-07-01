@@ -43,8 +43,9 @@ public class CommonActivity extends BaseActivity {
     protected Toolbar mToolbar;
     @Bind(R.id.pull_refresh_list)
     protected PullToRefreshListView mPullToRefreshListView;
-    @Bind(R.id.ll_loading)
-    protected LinearLayout mLoadingLayout;
+
+    private  ListView actualListView;
+    private View mFooterView;
 
     @Override
     protected int getLayout() {
@@ -96,6 +97,8 @@ public class CommonActivity extends BaseActivity {
         requestParams.put("lat",mApplication.getLongtitude()+"");
         requestParams.put("page",page+"");
 
+        mFooterView = getLayoutInflater().inflate(R.layout.list_loading,null);
+
         mPullToRefreshListView.setOnRefreshListener((refreshView)-> {
             String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),
                     DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
@@ -111,11 +114,11 @@ public class CommonActivity extends BaseActivity {
         // Add an end-of-list listener
         mPullToRefreshListView.setOnLastItemVisibleListener(()-> {
             //添加翻页layout
-            mLoadingLayout.setVisibility(View.VISIBLE);
+            actualListView.addFooterView(mFooterView);
             loadDate();
         });
 
-        ListView actualListView = mPullToRefreshListView.getRefreshableView();
+        actualListView = mPullToRefreshListView.getRefreshableView();
 
         // Need to use the Actual ListView when registering for Context Menu
         registerForContextMenu(actualListView);
@@ -162,8 +165,8 @@ public class CommonActivity extends BaseActivity {
                             mListItems.add(houseEntity.houAddr);
                         }
                         mAdapter.notifyDataSetChanged();
-                        if (mLoadingLayout.getVisibility() == View.VISIBLE) {
-                            mLoadingLayout.setVisibility(View.GONE);
+                        if (actualListView.getFooterViewsCount() > 0) {
+                            actualListView.removeFooterView(mFooterView);
                         }
                     } else {
                         showAlert("没有更多数据");
